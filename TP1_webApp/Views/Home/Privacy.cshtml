@@ -1,0 +1,37 @@
+﻿@page
+@model SQLConnection
+
+@{
+
+}
+
+
+<br>
+<h2>Tabla de Articulos</h2>
+
+<form>
+	<div class="input-group text-center">
+		<input id="result_txt" type="text" class="form-control text-center" value=@Html.DisplayFor(model => model.ItemsList.Count)>
+		@Html.ActionLink("Refresh", "Get_Items", new { area = "" }, new { @class = "btn btn-success" })
+	</div>
+
+</form>
+
+<table id="t1" class="table">
+    
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.ItemsList[1].ID)</td>
+            <td>@Html.DisplayFor(model => model.ItemsList[1].Name)</td>
+            <td>@Html.DisplayFor(model => model.ItemsList[1].Price)</td>
+        </tr>
+       
+    </tbody>
+</table>
