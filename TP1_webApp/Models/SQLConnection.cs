@@ -10,6 +10,7 @@ namespace TP1_webApp.Models
     {
         // Attribute
         public List<ItemClass> ItemsList = new List<ItemClass>();
+        public int ItemsListCount = 0;
 
 
         // Init
@@ -28,7 +29,8 @@ namespace TP1_webApp.Models
             try
             {
                 // ... DB credentials
-                String DBCredentials = "Data Source=ec2-3-144-162-161.us-east-2.compute.amazonaws.com;Initial Catalog=TP1;Persist Security Info=True;User ID=sa;Password=Admin1234";
+                String DBCredentials = "Data Source=ec2-54-160-71-139.compute-1.amazonaws.com;Initial Catalog=TareaConcepto;Persist Security Info=True;User ID=sa;Password=Guachin321?";
+                //String DBCredentials = "Data Source=ec2-18-225-7-10.us-east-2.compute.amazonaws.com;Initial Catalog=TP1;Persist Security Info=True;User ID=sa;Password=Admin1234";
                 SqlConnection Connection = new SqlConnection(DBCredentials);
                 
                 // ... open connection, send request and read responce
@@ -45,8 +47,9 @@ namespace TP1_webApp.Models
 
                     ItemClass articuloInfo = new ItemClass(articuloID, articuloName, articuloPrice);
                     ItemsList.Add(articuloInfo);
+                    ItemsListCount++;
                 }
-
+                
                 // ... close connection
                 Reader.Close();
                 

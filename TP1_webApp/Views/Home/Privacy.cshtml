@@ -2,7 +2,7 @@
 @model SQLConnection
 
 @{
-
+    
 }
 
 
@@ -22,16 +22,20 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Precio</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>@Html.DisplayFor(model => model.ItemsList[1].ID)</td>
-            <td>@Html.DisplayFor(model => model.ItemsList[1].Name)</td>
-            <td>@Html.DisplayFor(model => model.ItemsList[1].Price)</td>
-        </tr>
-       
+        @for(int i = 1; i < 10; i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => model.ItemsList[i].ID)</td>
+                <td>@Html.DisplayFor(model => model.ItemsList[i].Name)</td>
+                <td>@Html.DisplayFor(model => model.ItemsList[i].Price)</td>
+            </tr>
+        }      
     </tbody>
 </table>
+
+<a class="btn btn-primary btn-sm" href="/../Views/Home/Create">Insertar Articulo</a>
