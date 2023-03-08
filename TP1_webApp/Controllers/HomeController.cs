@@ -40,12 +40,21 @@ namespace TP1_webApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
+        // Get items method
         public ActionResult Get_Items()
         {
             SQLConnection myModel = new SQLConnection();
-            // ... calling the model method
+            // ... calling the Get method
             myModel.Get();
+            return View("Privacy", myModel);
+        }
+
+        // Add items method
+        public ActionResult Add_Items()
+        {
+            SQLConnection myModel = new SQLConnection();
+            // ... calling the Add() method
+            myModel.Add();
             return View("Privacy", myModel);
         }
     }
