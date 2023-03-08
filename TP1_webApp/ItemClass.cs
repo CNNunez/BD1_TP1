@@ -10,9 +10,9 @@
         // Init
         public ItemClass()
         {
-            ID = "n";
-            Name = "n";
-            Price = "n";
+            ID = "";
+            Name = "";
+            Price = "";
         }
         public ItemClass(String newID, String newName, String newPrice)
         {

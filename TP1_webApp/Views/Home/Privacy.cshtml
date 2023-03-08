@@ -5,6 +5,7 @@
     
 }
 
+
 <body>
     <section class="ftco-section">
         <div class="container">
@@ -48,7 +49,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for (int i = 1; i < 10; i++)
+                                            @for (int i = 1; i < 16; i++)
                                             {
                                                 <tr>
                                                     <td>@Html.DisplayFor(model => model.ItemsList[i].ID)</td>
@@ -73,19 +74,10 @@
                                             <span class="fa fa-map-marker"></span>
                                         </div>
                                         <div class="text pl-3">
-                                            <form action="Privacy.cshtml">
+                                            <form>
 
-                                                <label for="inputID">ID:</label><br>
-                                                <input type="text" id="inputID" name="inputID" value=""><br>
-
-                                                <label for="inputName">Name:</label><br>
-                                                <input type="text" id="inputName" name="inputName" value=""><br>
-
-                                                <label for="inputPrice">Price:</label><br>
-                                                <input type="text" id="inputPrice" name="inputPrice" value=""><br><br>
-
-                                                <input type="submit" value="Add">
-                                                @Html.ActionLink("Add", "Add_Items", new { area = "" }, new { @class = "btn btn-success" })
+                                                @Html.ActionLink("Add", "Insert", new { area = "" }, new { @class = "btn btn-success" })
+                                                
                                             </form>
 
                                         </div>

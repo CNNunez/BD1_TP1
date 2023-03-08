@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Data.SqlClient;
 
 
@@ -14,8 +15,9 @@ namespace TP1_webApp.Models
         // ... DB credentials
         public String DBCredentials;
         public SqlConnection Connection;
-        public SqlCommand SelectCommand;
-        public SqlCommand InsertCommand;
+        public String Name;
+        public int Price;
+
 
 
         // Init
@@ -25,9 +27,9 @@ namespace TP1_webApp.Models
             //public String DBCredentials = "Data Source=ec2-54-160-71-139.compute-1.amazonaws.com;Initial Catalog=TareaConcepto;Persist Security Info=True;User ID=sa;Password=Guachin321?";
             DBCredentials = "Data Source=ec2-18-225-7-10.us-east-2.compute.amazonaws.com;Initial Catalog=TP1;Persist Security Info=True;User ID=sa;Password=Admin1234";
             Connection = new SqlConnection(DBCredentials);
-            SelectCommand = new SqlCommand("SELECT * FROM dbo.Articulo", Connection);
-            InsertCommand = new SqlCommand("INSERT INTO dbo.Articulo (Id,Nombre,Precio) VALUES (@valID, @valName, @valPrice)", Connection);
-            ItemClass articuloInfo = new ItemClass("NA1", "NA2", "NA3");
+            Name = "";
+            Price = 0;
+            ItemClass articuloInfo = new ItemClass();
             ItemsList.Add(articuloInfo);
         }
 
@@ -41,6 +43,7 @@ namespace TP1_webApp.Models
             {
                 // ... open connection, send request and read responce
                 Connection.Open();
+                SqlCommand SelectCommand = new SqlCommand("SELECT * FROM dbo.Articulo", Connection);
                 SqlDataReader Reader = SelectCommand.ExecuteReader();
                 
                 // ... collect the items from the DB
@@ -72,17 +75,30 @@ namespace TP1_webApp.Models
         // ... Add item to DB
         public void Add()
         {
+            Console.WriteLine("aqui");
             try
             {
+                int i = 100;
+                int p = 1;
+                String valName = "newName3";
+
                 SqlConnection Connection = new SqlConnection(DBCredentials);
-                InsertCommand.Parameters.AddWithValue("@valID", "newID");
-                InsertCommand.Parameters.AddWithValue("@valName", "newNAme");
-                InsertCommand.Parameters.AddWithValue("@valPrice", "newPrice");
+                SqlCommand InsertCommand = new SqlCommand("INSERT INTO [TP1].[dbo].[Articulo]([Nombre], [Precio])VALUES(@valName,@valPrice)", Connection);
+                InsertCommand.CommandType = CommandType.Text;
+                InsertCommand.Parameters.Add("@valName", SqlDbType.VarChar).Value = valName;
+                InsertCommand.Parameters.AddWithValue("@valPrice", SqlDbType.Int).Value = p;
 
                 // ... open connection and send new item
-                Connection.Open();
-                InsertCommand.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    Connection.Open();
+                    InsertCommand.ExecuteNonQuery();
+                    Connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception: " + ex.ToString());
+                }
 
             }
             catch (Exception ex)

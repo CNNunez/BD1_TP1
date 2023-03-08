@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.Reflection;
 using TP1_webApp.Models;
 
 namespace TP1_webApp.Controllers
@@ -8,7 +10,7 @@ namespace TP1_webApp.Controllers
     {
         // HomeController
         private readonly ILogger<HomeController> _logger;
-
+        SQLConnection myConnection = new SQLConnection();
 
         // Logger
         public HomeController(ILogger<HomeController> logger)
@@ -17,20 +19,33 @@ namespace TP1_webApp.Controllers
         }
 
 
-        // Idex view
+        // Index view
         public IActionResult Index()
         {
             return View();
         }
 
 
+        // Return to Privacy view
+        public IActionResult Return()
+        {
+            // ... calling the model method
+            myConnection.Get();
+            return View("Privacy", myConnection);
+        }
+
+        // Insert view
+        public IActionResult Insert()
+        {
+            return View("Insert", myConnection);
+        }
+
         // Privacy view
         public IActionResult Privacy()
         {
-            SQLConnection myServer = new SQLConnection();
             // ... calling the model method
-            myServer.Get();
-            return View(myServer);
+            myConnection.Get();
+            return View(myConnection);
         }
 
         // Error view
@@ -43,19 +58,18 @@ namespace TP1_webApp.Controllers
         // Get items method
         public ActionResult Get_Items()
         {
-            SQLConnection myModel = new SQLConnection();
             // ... calling the Get method
-            myModel.Get();
-            return View("Privacy", myModel);
+            myConnection.Get();
+            return View("Privacy", myConnection);
         }
 
         // Add items method
         public ActionResult Add_Items()
         {
-            SQLConnection myModel = new SQLConnection();
-            // ... calling the Add() method
-            myModel.Add();
-            return View("Privacy", myModel);
+            myConnection.Add();
+            return View("Insert", myConnection);
         }
+
+        
     }
 }
