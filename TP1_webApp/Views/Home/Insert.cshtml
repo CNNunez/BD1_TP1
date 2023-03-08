@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model SQLConnection
+
+<body>
+    <section class="ftco-section">
+        <div class="container">
+
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Insert new Item</h2>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <div class="wrapper">
+                        <div class="row no-gutters">
+
+
+
+                            <div class="row justify-content-center">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Add the requeried information</h3>
+                                    <div id="form-message-warning" class="mb-4"></div>
+                                    <div id="form-message-success" class="mb-4">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputName">Name:</label>
+                                                <input id="inputName" name="inputName" type="text" class="form-control text-center" value=@Model.Name><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPrice">Price:</label>
+                                                <input id="inputPrice" name="inputPrice" type="text" class="form-control text-center" value=@Model.Price><br><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <form>
+                                                    @Html.ActionLink("Add", "Add_Items", new { area = "" }, new { @class = "btn btn-success" })
+                                                    @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
+                                                </form>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;7a4884224a302b01&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.2.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
+
+</body>
