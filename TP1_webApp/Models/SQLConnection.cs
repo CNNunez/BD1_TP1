@@ -11,7 +11,7 @@ namespace TP1_webApp.Models
         // Attribute
         public List<ItemClass> ItemsList = new List<ItemClass>();
         public int ItemsListCount = 0;
-
+        
 
         // Init
         // ... this inicialize the table
@@ -51,6 +51,8 @@ namespace TP1_webApp.Models
                 }
                 
                 // ... close connection
+                var sortedList = ItemsList.OrderBy(p => p.Name).ToList();
+                ItemsList = sortedList;
                 Reader.Close();
                 
             }
