@@ -79,11 +79,18 @@ namespace TP1_webApp.Models
             Console.WriteLine("aqui");
             try
             {
+
                 SqlConnection Connection = new SqlConnection(DBCredentials);
                 SqlCommand InsertCommand = new SqlCommand("INSERT INTO [TP1].[dbo].[Articulo]([Nombre], [Precio])VALUES(@valName,@valPrice)", Connection);
                 InsertCommand.CommandType = CommandType.Text;
                 InsertCommand.Parameters.Add("@valName", SqlDbType.VarChar).Value = newName;
                 InsertCommand.Parameters.AddWithValue("@valPrice", SqlDbType.Int).Value = newPrice;
+
+                /* ... using the stored procedure
+                SqlCommand InsertCommand = new SqlCommand("addNewItem", Connection);
+                InsertCommand.CommandType = CommandType.StoredProcedure;
+                InsertCommand.Parameters.AddWithValue("@valName", newName);
+                InsertCommand.Parameters.AddWithValue("@valPrice", newPrice);*/
 
                 // ... open connection and send new item
                 try
