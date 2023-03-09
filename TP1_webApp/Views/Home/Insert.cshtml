@@ -1,10 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TP1_webApp.Models.SQLConnection
+
+
 @{
 }
 
-@model SQLConnection
+<h4 style="color:purple">
+    <b>Name:</b>  @ViewBag.Name <br />
+    <b>Price:</b> @ViewBag.Price
+</h4>
+<hr />
+<h3><b>Forms: Strongly Typed</b></h3>
+
 
 <body>
     <section class="ftco-section">
@@ -30,22 +36,31 @@
                                     <h3 class="mb-4">Add the requeried information</h3>
                                     <div id="form-message-warning" class="mb-4"></div>
                                     <div id="form-message-success" class="mb-4">
-                                        <form>
+                                        @using (Html.BeginForm("Insert", "Home", FormMethod.Post))
+                                        {
                                             <div class="form-group">
-                                                <label for="inputName">Name:</label>
-                                                <input id="inputName" name="inputName" type="text" class="form-control text-center" value=@Model.Name><br>
+                                                @Html.LabelFor(m => m.Name, "Name:")
                                             </div>
-                                            <div class="form-group">
-                                                <label for="inputPrice">Price:</label>
-                                                <input id="inputPrice" name="inputPrice" type="text" class="form-control text-center" value=@Model.Price><br><br>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(m => m.Name)
                                             </div>
+
                                             <div class="form-group">
-                                                <form>
-                                                    @Html.ActionLink("Add", "Add_Items", new { area = "" }, new { @class = "btn btn-success" })
+                                                @Html.LabelFor(m => m.Price, "Price:")
+                                            </div>
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(m => m.Price)
+                                            </div>
+
+                                            <div class="form-group">
+                                            <input type="submit" value="Enviar!"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.ActionLink("Add", "Insert", new { area = "" }, new { @class = "btn btn-success" })
                                                     @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
-                                                </form>
                                             </div>
-                                        </form>
+                                        }
                                     </div>
                                 </div>
                             </div>

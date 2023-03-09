@@ -64,10 +64,13 @@ namespace TP1_webApp.Controllers
         }
 
         // Add items method
-        public ActionResult Add_Items()
+        [HttpPost]
+        public ActionResult Insert(Models.SQLConnection SQLconn)
         {
-            myConnection.Add();
-            return View("Insert", myConnection);
+            ViewBag.Name = SQLconn.Name;
+            ViewBag.Price = SQLconn.Price;
+            SQLconn.Add(SQLconn.Name, SQLconn.Price);
+            return View("Insert");
         }
 
         

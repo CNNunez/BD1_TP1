@@ -15,8 +15,8 @@ namespace TP1_webApp.Models
         // ... DB credentials
         public String DBCredentials;
         public SqlConnection Connection;
-        public String Name;
-        public int Price;
+        public String Name { get; set; }
+        public int Price { get; set; }
 
 
 
@@ -73,20 +73,16 @@ namespace TP1_webApp.Models
 
 
         // ... Add item to DB
-        public void Add()
+        public void Add(String newName, int newPrice)
         {
             Console.WriteLine("aqui");
             try
             {
-                int i = 100;
-                int p = 1;
-                String valName = "newName3";
-
                 SqlConnection Connection = new SqlConnection(DBCredentials);
                 SqlCommand InsertCommand = new SqlCommand("INSERT INTO [TP1].[dbo].[Articulo]([Nombre], [Precio])VALUES(@valName,@valPrice)", Connection);
                 InsertCommand.CommandType = CommandType.Text;
-                InsertCommand.Parameters.Add("@valName", SqlDbType.VarChar).Value = valName;
-                InsertCommand.Parameters.AddWithValue("@valPrice", SqlDbType.Int).Value = p;
+                InsertCommand.Parameters.Add("@valName", SqlDbType.VarChar).Value = newName;
+                InsertCommand.Parameters.AddWithValue("@valPrice", SqlDbType.Int).Value = newPrice;
 
                 // ... open connection and send new item
                 try
