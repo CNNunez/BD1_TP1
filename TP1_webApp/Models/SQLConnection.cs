@@ -11,7 +11,7 @@ namespace TP1_webApp.Models
     {
         // Attribute
         public List<ItemClass> ItemsList = new List<ItemClass>();
-        public int ItemsListCount = 0;
+        public int ItemsListCount;
         // ... DB credentials
         public String DBCredentials;
         public SqlConnection Connection;
@@ -29,6 +29,7 @@ namespace TP1_webApp.Models
             Connection = new SqlConnection(DBCredentials);
             Name = "";
             Price = 0;
+            ItemsListCount = 0;
             ItemClass articuloInfo = new ItemClass();
             ItemsList.Add(articuloInfo);
         }
@@ -49,9 +50,9 @@ namespace TP1_webApp.Models
                 // ... collect the items from the DB
                 while (Reader.Read())
                 {
-                    String articuloID = Reader["Id"].ToString();
-                    String articuloName = Reader["Nombre"].ToString();
-                    String articuloPrice = Reader["Precio"].ToString();
+                    String articuloID = "" + Reader["Id"].ToString();
+                    String articuloName = "" + Reader["Nombre"].ToString();
+                    String articuloPrice = "" + Reader["Precio"].ToString();
 
                     ItemClass articuloInfo = new ItemClass(articuloID, articuloName, articuloPrice);
                     ItemsList.Add(articuloInfo);

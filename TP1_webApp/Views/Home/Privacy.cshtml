@@ -1,8 +1,7 @@
 ﻿@page
-@model SQLConnection
+@model TP1_webApp.Models.SQLConnection
 
 @{
-    
 }
 
 
@@ -33,7 +32,7 @@
                                         Total items found:
                                         <form>
                                             <div class="input-group text-center">
-                                                <input id="result_txt" type="text" class="form-control text-center" value=@Html.DisplayFor(model => model.ItemsList.Count)>
+                                                <input id="result_txt" type="text" class="form-control text-center" value=@ViewBag.Count>
                                                 @Html.ActionLink("Refresh", "Get_Items", new { area = "" }, new { @class = "btn btn-success" })
                                             </div>
 
@@ -49,7 +48,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for (int i = 1; i < 16; i++)
+                                            @for (int i = 1; i <= @ViewBag.Count; i++)
                                             {
                                                 <tr>
                                                     <td>@Html.DisplayFor(model => model.ItemsList[i].ID)</td>

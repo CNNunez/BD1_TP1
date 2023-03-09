@@ -4,12 +4,6 @@
 @{
 }
 
-<h4 style="color:purple">
-    <b>Name:</b>  @ViewBag.Name <br />
-    <b>Price:</b> @ViewBag.Price
-</h4>
-<hr />
-<h3><b>Forms: Strongly Typed</b></h3>
 
 
 <body>
@@ -36,7 +30,7 @@
                                     <h3 class="mb-4">Add the requeried information</h3>
                                     <div id="form-message-warning" class="mb-4"></div>
                                     <div id="form-message-success" class="mb-4">
-                                        @using (Html.BeginForm("Insert", "Home", FormMethod.Post))
+                                        @using (Html.BeginForm("Insert", "Home"))
                                         {
                                             <div class="form-group">
                                                 @Html.LabelFor(m => m.Name, "Name:")
@@ -53,12 +47,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                            <input type="submit" value="Enviar!"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.ActionLink("Add", "Insert", new { area = "" }, new { @class = "btn btn-success" })
-                                                    @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
+                                                <input type="submit" value="Enviar!" class="btn btn-success" />
+                                                @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
                                             </div>
                                         }
                                     </div>

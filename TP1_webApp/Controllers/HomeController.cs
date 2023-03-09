@@ -31,6 +31,7 @@ namespace TP1_webApp.Controllers
         {
             // ... calling the model method
             myConnection.Get();
+            ViewBag.Count = myConnection.ItemsListCount;
             return View("Privacy", myConnection);
         }
 
@@ -43,8 +44,10 @@ namespace TP1_webApp.Controllers
         // Privacy view
         public IActionResult Privacy()
         {
+            
             // ... calling the model method
             myConnection.Get();
+            ViewBag.Count = myConnection.ItemsListCount;
             return View(myConnection);
         }
 
@@ -60,6 +63,7 @@ namespace TP1_webApp.Controllers
         {
             // ... calling the Get method
             myConnection.Get();
+            ViewBag.Count = myConnection.ItemsListCount;
             return View("Privacy", myConnection);
         }
 
