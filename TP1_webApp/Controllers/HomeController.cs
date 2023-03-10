@@ -73,6 +73,11 @@ namespace TP1_webApp.Controllers
         {
             ViewBag.Name = SQLconn.Name;
             ViewBag.Price = SQLconn.Price;
+            if (SQLconn.Name == null)
+            {
+                ViewBag.Name = "ERR";
+                ViewBag.Price = "ERR";
+            }
             SQLconn.Add(SQLconn.Name, SQLconn.Price);
             return View("Insert");
         }
