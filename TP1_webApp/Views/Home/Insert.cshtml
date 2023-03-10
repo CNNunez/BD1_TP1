@@ -24,33 +24,57 @@
                         <div class="row no-gutters">
 
 
-
-                            <div class="row justify-content-center">
+                            <div class="col-md-7 d-flex align-items-stretch">
                                 <div class="contact-wrap w-100 p-md-5 p-4">
-                                    <h3 class="mb-4">Add the requeried information</h3>
-                                    <div id="form-message-warning" class="mb-4"></div>
-                                    <div id="form-message-success" class="mb-4">
-                                        @using (Html.BeginForm("Insert", "Home"))
-                                        {
-                                            <div class="form-group">
-                                                @Html.LabelFor(m => m.Name, "Name:")
-                                            </div>
-                                            <div class="editor-field">
-                                                @Html.TextBoxFor(m => m.Name)
-                                            </div>
+                                    <div class="row justify-content-center">
+                                        <div class="contact-wrap w-100 p-md-5 p-4">
+                                            <h3 class="mb-4">Add the requeried information</h3>
+                                            <div id="form-message-warning" class="mb-4"></div>
+                                            <div id="form-message-success" class="mb-4">
+                                                @using (Html.BeginForm("Insert", "Home"))
+                                                {
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Name, "Name:")
+                                                    </div>
+                                                    <div class="editor-field">
+                                                        @Html.TextBoxFor(m => m.Name)
+                                                    </div>
 
-                                            <div class="form-group">
-                                                @Html.LabelFor(m => m.Price, "Price:")
-                                            </div>
-                                            <div class="editor-field">
-                                                @Html.TextBoxFor(m => m.Price)
-                                            </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Price, "Price:")
+                                                    </div>
+                                                    <div class="editor-field">
+                                                        @Html.TextBoxFor(m => m.Price)
+                                                    </div>
 
-                                            <div class="form-group">
-                                                <input type="submit" value="Enviar!" class="btn btn-success" />
-                                                @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Enviar!" class="btn btn-success" />
+                                                        @Html.ActionLink("Return", "Return", new { area = "" }, new { @class = "btn btn-primary" })
+                                                    </div>
+                                                }
                                             </div>
-                                        }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-5 d-flex align-items-stretch">
+                                <div class="info-wrap bg-primary w-100 p-lg-5 p-4">
+
+                                    <h3 class="mb-4 mt-md-4" style="color:darkblue" >Saved Information</h3>
+                                    <div class="dbox w-100 d-flex align-items-start">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-map-marker"></span>
+                                        </div>
+                                        <div class="text pl-3">
+                                            <h4 style="color:lightblue">
+                                                <b>Name:</b>    @ViewBag.Name <br />
+                                                <b>Price:</b>  @ViewBag.Price
+                                            </h4>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>

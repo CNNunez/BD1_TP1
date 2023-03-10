@@ -44,7 +44,10 @@ namespace TP1_webApp.Models
             {
                 // ... open connection, send request and read responce
                 Connection.Open();
-                SqlCommand SelectCommand = new SqlCommand("SELECT * FROM dbo.Articulo", Connection);
+
+                // ... using the stored procedure
+                SqlCommand SelectCommand = new SqlCommand("GetItems", Connection);
+                SelectCommand.CommandType = CommandType.StoredProcedure;
                 SqlDataReader Reader = SelectCommand.ExecuteReader();
                 
                 // ... collect the items from the DB
@@ -74,23 +77,18 @@ namespace TP1_webApp.Models
 
 
         // ... Add item to DB
-        public void Add(String newName, int newPrice)
+        public void Add(String valName, int valPrice)
         {
-            Console.WriteLine("aqui");
             try
             {
 
                 SqlConnection Connection = new SqlConnection(DBCredentials);
-                SqlCommand InsertCommand = new SqlCommand("INSERT INTO [TP1].[dbo].[Articulo]([Nombre], [Precio])VALUES(@valName,@valPrice)", Connection);
-                InsertCommand.CommandType = CommandType.Text;
-                InsertCommand.Parameters.Add("@valName", SqlDbType.VarChar).Value = newName;
-                InsertCommand.Parameters.AddWithValue("@valPrice", SqlDbType.Int).Value = newPrice;
 
-                /* ... using the stored procedure
-                SqlCommand InsertCommand = new SqlCommand("addNewItem", Connection);
+                // ... using the stored procedure
+                SqlCommand InsertCommand = new SqlCommand("AddNewItem", Connection);
                 InsertCommand.CommandType = CommandType.StoredProcedure;
-                InsertCommand.Parameters.AddWithValue("@valName", newName);
-                InsertCommand.Parameters.AddWithValue("@valPrice", newPrice);*/
+                InsertCommand.Parameters.AddWithValue("@newName", valName);
+                InsertCommand.Parameters.AddWithValue("@newPrice", valPrice);
 
                 // ... open connection and send new item
                 try
